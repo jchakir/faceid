@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  faceid:
+    container_name: faceid_cpu
+    volumes:
+      - $DATASET_PATH:/dataset
+      - $SAVED_MODEL_PATH:/saved_model
+    build:
+      context: train
+      dockerfile: Dockerfile
+      args:
+        - MODEL_NAME=$MODEL_NAME
+    env_file:
+      - .env
+    init: true

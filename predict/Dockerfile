@@ -1,0 +1,7 @@
+FROM tensorflow/serving:latest
+
+ARG MODEL_NAME MODEL_VERSION SAVED_MODEL_PATH
+
+WORKDIR /models/$MODEL_NAME/$MODEL_VERSION
+
+COPY $MODEL_VERSION/saved_model.pb .

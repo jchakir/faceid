@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  faceid:
+    build:
+      context: predict
+      dockerfile: Dockerfile
+      args:
+        - SAVED_MODEL_PATH=$SAVED_MODEL_PATH
+        - MODEL_NAME=$MODEL_NAME
+        - MODEL_VERSION=$MODEL_VERSION
+    container_name: faceid_prod
+    env_file:
+      - .env
+    ports:
+      - 8500:8500
+      - 8501:8501
+    init: true
